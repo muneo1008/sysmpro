@@ -3,34 +3,36 @@
 #include "copy.h"
 
 char line[MAXLINE];
-char* strArr[5];
-char len[MAXLINE];
+char strArr[5][MAXLINE];
+void copy(char from[], char to[]);
 
 int main(){
-
-	int i = 0;
-	int num = 0;
-
-	while(num == 5){
-		scanf("%s", strArr[num]);
-		num++;
+	
+	int max = 0;
+	
+	while(max < 5){
+		fgets(strArr[max], MAXLINE, stdin);
+		max++;
 	}
 	
-	for(i = 0; i < num; i++){
-		for(j = 0; j < num; j++){
-			if(strlen(strArr[i]) < strlen(strArr[j])){
-				len = strArr[i];
-				strArr[i] = strArr[j];
-				strArr[j] = len;
-			}			
-		}
+	for(int j = 0; j < 4; j++){
+	    for(int k = 0; k < 4 - j; k++){
+		    if(strlen(strArr[k]) < strlen(strArr[k+1])){
+			copy(strArr[k], line);
+			copy(strArr[k+1], strArr[k]);
+			copy(line, strArr[k+1]);
+		     }
+
+	    }
 	}
 
-	for(i = 0; i < num; i++){
-		printf("%s\n", strArr[i]);
+	puts("");
+	for(int i = 0; i < 5; i++){
+		printf("%s",strArr[i]);
 	}
-	
+
+
+
 
 	return 0;
 }
-
