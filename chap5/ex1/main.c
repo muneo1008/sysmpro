@@ -26,7 +26,7 @@ int main(int argc, char *argv[]){
 	while(( c = read(fd, &buf, 1)) > 0){
 		savedText[i][j] = buf;
 		j++;
-		if(buf == '\n'){
+		if(buf == '\0'){
 			i++;
 			j = 0;
 		}
